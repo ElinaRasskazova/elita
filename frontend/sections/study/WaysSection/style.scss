@@ -1,0 +1,37 @@
+.WaysSection {
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .col {
+    width: span(4);
+    margin-right: gutter();
+    margin-bottom: gutter();
+    text-align: center;
+    @include disableLastMargin(right);
+    @include disableNthMargin(6n, right);
+  }
+}
+
+.Feature {
+  .header {
+    padding: 16px;
+    color: #fff;
+    background-color: #000;
+    font-weight: $bold;
+  }
+
+  .feature {
+    padding: 16px;
+    border-bottom: 1px solid #000;
+  }
+
+  .lessons {
+    padding: 16px;
+  }
+  .lessonsTitle {
+    font-weight: $bold;
+  }
+}

@@ -1,0 +1,23 @@
+.container {
+  max-width: #{$containerMaxWidth}px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.column {
+  width: span(3);
+  margin-right: gutter();
+  margin-bottom: gutter();
+  text-align: center;
+  @include disableLastMargin(right);
+  @include disableNthMargin(6n, right);
+}
+
+.input {
+  @include placeholder(red);
+}

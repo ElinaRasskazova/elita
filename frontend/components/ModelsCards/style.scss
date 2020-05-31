@@ -1,0 +1,44 @@
+.InstagramCards {
+  text-align: center;
+
+  .container {
+    display: flex;
+    padding: 0 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    position: relative;
+    width: calc(100vw / 5.5);
+    height: calc(100vw / 5.5);
+    margin-right: 5px;
+    margin-bottom: 5px;
+    @include disableNthMargin(3n, right);
+    @include bg(center);
+
+    @include onTablet() {
+      width: calc(100vw / 4.2);
+      height: calc(100vw / 4.2);
+      @include disableNthMargin(4n, right);
+
+      &:nth-child(5n) {
+        margin-right: 5px;
+      }
+    }
+
+    @include onPhone() {
+      width: calc(100vw / 2.2);
+      height: calc(100vw / 2.2);
+      @include disableNthMargin(2n, right);
+    }
+
+    .link {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

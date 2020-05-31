@@ -1,0 +1,20 @@
+.PostPage {
+  .postImage {
+    max-width: 100%;
+  }
+
+  .userLink {
+    @include link($brandColor, $textColor);
+  }
+
+  .details {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .favRed {
+    svg {
+      fill: red;
+    }
+  }
+}
