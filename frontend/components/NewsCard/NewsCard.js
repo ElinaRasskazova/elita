@@ -21,7 +21,7 @@ const NewsCard = ({data, className}) => {
     <Card className={classes}>
       <div className={style.imageWrapper}>
         <div className={style.image} style={createBackgroundImage(data.image)} />
-        <Link className={style.imageLink} href={routes.post} as={`${routes.posts}/${data.id}`} />
+        <Link className={style.imageLink} href={routes.new} as={`${routes.news}/${data.id}`} />
       </div>
       <CardContent className={style.cardContent}>
         <Typography variant="heading3">
@@ -32,7 +32,7 @@ const NewsCard = ({data, className}) => {
         <Typography variant="paragraph" className={style.description} hasMargin>
           {data.description}
         </Typography>
-        <Link className={style.showMore} href={routes.post} as={`${routes.posts}/${data.id}`}>
+        <Link className={style.showMore} href={routes.new} as={`${routes.news}/${data.id}`}>
           Читать далее
         </Link>
       </CardContent>
