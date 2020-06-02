@@ -6,7 +6,7 @@ import Typography from 'components/Typography';
 const GridFeature = ({className, feature}) => {
   return (
     <div className={className}>
-      <img src={feature.image} alt="feature" />
+      <img src={feature.image} alt="feature" style={{borderRadius: '100%'}} />
       <Typography variant="paragraph">{feature.text}</Typography>
     </div>
   );

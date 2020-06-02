@@ -19,7 +19,7 @@ const ModelsCards = ({images, className}) => {
         Модели
       </Typography>
       <div className={style.container}>
-        {images.slice(0, 10).map((image, i) => (
+        {images.slice(0, 9).map((image, i) => (
           <div key={i} className={style.card} style={createBackgroundImage(image)} />
         ))}
       </div>
