@@ -1,6 +1,6 @@
 {
   "name": "next-js-boiler",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Next.js sparkling boiler for all types of projects",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "init-server": "node server/utils/initFileStructure.js",
     "dev": "npm run init-server && cross-env NODE_ENV=development nodemon server -w server",
     "build": "next build && npm run init-server",
-    "start": "node server/index.js",
+    "start": "pm2 start ecosystem.config.js --env production",
     "prettier": "prettier --write \"./**/*.{js,jsx,json,css,scss}\"",
     "lint:inspect": "eslint \"./**/*.{js,jsx}\"",
     "lint:fix": "eslint \"./**/*.{js,jsx}\" --fix",
@@ -48,7 +48,7 @@
     "body-parser": "^1.19.0",
     "classnames": "^2.2.6",
     "cross-env": "^7.0.2",
-    "csso-webpack-plugin": "^1.0.0-beta.12",
+    "csso-webpack-plugin": "^2.0.0-beta.1",
     "dotenv": "^8.2.0",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.7.0",
@@ -68,6 +68,7 @@
     "node-sass": "4.13.0",
     "node-sass-json-importer": "^4.1.0",
     "nodemon": "^2.0.4",
+    "pm2": "^4.4.0",
     "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
     "react": "16.12.0",
