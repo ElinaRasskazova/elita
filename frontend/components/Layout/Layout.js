@@ -2,10 +2,10 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import Container from '@material-ui/core/Container';
 // Internals
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import Container from '@material-ui/core/container';
 import style from './style.scss';
 
 class Layout extends PureComponent {
