@@ -11,7 +11,7 @@ const NewsList = ({childrens}) => {
     <div className={style.NewsList}>
       <Typography variant="heading2">Новости</Typography>
       <div className={style.postsWrap}>
-        {childrens.items.map((item, key) => (
+        {childrens.map((item, key) => (
           <NewsCard data={item} className={style.card} key={key} />
         ))}
       </div>
