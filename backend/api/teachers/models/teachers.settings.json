@@ -11,8 +11,7 @@
   "attributes": {
     "FIO": {
       "type": "string",
-      "required": true,
-      "unique": false
+      "required": true
     },
     "Photo": {
       "model": "file",

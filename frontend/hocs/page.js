@@ -14,6 +14,12 @@ export default Component => {
       children: PropTypes.node,
     };
 
+    static async getInitialProps(ctx) {
+      const pageProps = typeof Component.getInitialProps === 'function' ? await Component.getInitialProps(ctx) : {};
+
+      return {...pageProps};
+    }
+
     render() {
       return (
         <Layout>

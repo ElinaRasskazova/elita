@@ -7,7 +7,7 @@ import NewsList from 'components/NewsList';
 
 @page
 class News extends React.PureComponent {
-  render() {
+    render() {
     return <NewsList childrens={slides} />;
   }
 }

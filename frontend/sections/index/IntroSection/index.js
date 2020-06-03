@@ -1,14 +1,14 @@
 // Vendor
 import React from 'react';
+import PropTypes from "prop-types";
 // Internal
-import {slides} from 'config';
 import FeaturesSlider from './FeaturesSlider';
 import FeaturesSlide from './FeaturesSlide';
 import style from './style.scss';
 
-const IntroSection = () => {
+const IntroSection = ({newsData}) => {
   const renderSlides = () => {
-    return slides.items.map((item, key) => {
+    return newsData.map((item, key) => {
       return <FeaturesSlide key={key} item={item} />;
     });
   };
@@ -18,6 +18,11 @@ const IntroSection = () => {
       <FeaturesSlider>{renderSlides()}</FeaturesSlider>
     </section>
   );
+
+};
+
+IntroSection.propTypes = {
+  newsData: PropTypes.array.isRequired,
 };
 
 export default IntroSection;

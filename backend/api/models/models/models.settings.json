@@ -13,9 +13,6 @@
       "type": "string",
       "required": true
     },
-    "Link": {
-      "type": "string"
-    },
     "Photo": {
       "model": "file",
       "via": "related",
