@@ -37,7 +37,7 @@ class EmailForm extends PureComponent {
             if (response.statusCode >= 400) {
                 alert(response.error);
             } else {
-                console.log(response)
+                this.setState({...this.state, isSended: true});
             }
 
 
@@ -57,7 +57,7 @@ class EmailForm extends PureComponent {
         });
 
         if (this.state.isSended) {
-            return <Typography variant="paragraph">Ваша заявка будет обработана в ближайшее время</Typography>
+            return <Typography className={style.sendedText} variant="heading2">Ваша заявка будет обработана в ближайшее время</Typography>
         }
         return (
             <Form
