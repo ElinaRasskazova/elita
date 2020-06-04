@@ -1,8 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {Form} from 'react-final-form';
-// import MaskedInput from 'react-text-mask';
-// import NumberFormat from 'react-number-format';
+import React, {PureComponent} from 'react';
+import {Form, Field} from 'react-final-form';
+import PropTypes from "prop-types";
 import cn from 'classnames';
 
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -12,77 +10,121 @@ import Typography from 'components/Typography';
 import Button from '@material-ui/core/Button';
 import style from './style.scss';
 
-const EmailForm = ({className}) => {
-  const classes = cn({
-    [style.Form]: true,
-    [className]: className,
-  });
+class EmailForm extends PureComponent {
+    static defaultProps = {
+        className: '',
+    };
 
-  const onSubmit = values => {
-    window.alert(JSON.stringify(values, 0, 2));
-  };
+    static propTypes = {
+        className: PropTypes.string,
+    };
 
-  const [state, setState] = React.useState({
-    checked: false,
-  });
+    state = {
+        checked: false,
+        isSended: false,
+    };
 
-  const handleChange = event => {
-    setState({...state, [event.target.name]: event.target.checked});
-  };
+    onSubmit = async values => {
+        if (this.state.checked == true) {
+            const response = await fetch(`${process.env.API_BASE_URL}/requests`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values, 0, 2),
+            });
 
-  return (
-    <Form
-      onSubmit={onSubmit}
-      initialValues={{stooge: 'larry', employed: false}}
-      render={({handleSubmit}) => (
-        <form onSubmit={handleSubmit} autoComplete="off">
-          <Typography variant="heading2" hasMargin>
-            Для того, чтобы записаться в школу, заполните Ваши данные
-          </Typography>
-          <div className={classes}>
-            <TextField
-              id="standard-basic"
-              name="firstName"
-              label="Ваше имя"
-              variant="outlined"
-              className={style.input}
+            if (response.statusCode >= 400) {
+                alert(response.error);
+            } else {
+                console.log(response)
+            }
+
+
+        } else {
+            alert('Вы не дали согласие на обработку персональных данных')
+        }
+    };
+
+    handleChange = event => {
+        this.setState({...this.state, [event.target.name]: event.target.checked});
+    };
+
+    render() {
+        const classes = cn({
+            [style.Form]: true,
+            [this.props.className]: this.props.className,
+        });
+
+        if (this.state.isSended) {
+            return <Typography variant="paragraph">Ваша заявка будет обработана в ближайшее время</Typography>
+        }
+        return (
+            <Form
+                onSubmit={this.onSubmit}
+                initialValues={{}}
+                render={({handleSubmit, reset, submitting, pristine, values}) => (
+                    <form onSubmit={handleSubmit} autoComplete="off">
+                        <Typography variant="heading2" hasMargin>
+                            Для того, чтобы записаться в школу, заполните Ваши данные
+                        </Typography>
+                        <div className={classes}>
+                            <Field name="Name">
+                                {({input}) => (
+                                    <TextField
+                                        id="standard-basic"
+                                        name="firstName"
+                                        label="Ваше имя"
+                                        variant="outlined"
+                                        className={style.input}
+                                        required
+                                        {...input}
+                                    />
+                                )}
+                            </Field>
+                            <Field name="Phone">
+                                {({input}) => (
+                                    <TextField
+                                        id="standard-basic"
+                                        name="firstName"
+                                        label="8-xxx-xxx-xx-xx"
+                                        variant="outlined"
+                                        className={style.input}
+                                        required
+                                        {...input}
+                                    />
+                                )}
+                            </Field>
+                            <Field name="Question">
+                                {({input}) => (
+                                    <TextField
+                                        id="standard-basic"
+                                        name="firstName"
+                                        label="Ваш вопрос"
+                                        variant="outlined"
+                                        className={style.input}
+                                        required
+                                        {...input}
+                                    />
+                                )}
+                            </Field>
+                            <Button variant="contained" color="secondary" type="submit">
+                                Записаться в школу
+                            </Button>
+                            <div className={style.checkbox}>
+                                <FormControlLabel
+                                    control={<Checkbox checked={this.state.checked} onChange={this.handleChange}
+                                                       name="checked"/>}
+                                    label="Даю согласие на обратку персональных данных согласно политике конфиденциальности"
+                                />
+                            </div>
+                        </div>
+                    </form>
+                )}
             />
-            <TextField
-              id="standard-basic"
-              name="firstName"
-              label="8-xxx-xxx-xx-xx"
-              variant="outlined"
-              className={style.input}
-            />
-            <TextField
-              id="standard-basic"
-              name="firstName"
-              label="Ваш возраст"
-              variant="outlined"
-              className={style.input}
-            />
-            <Button variant="contained" color="secondary" type="submit">
-              Записаться в школу
-            </Button>
-            <div className={style.checkbox}>
-              <FormControlLabel
-                control={<Checkbox checked={state.checked} onChange={handleChange} name="checked" />}
-                label="Даю согласие на обратку персональных данных согласно политике конфиденциальности"
-              />
-            </div>
-          </div>
-        </form>
-      )}
-    />
-  );
-};
+        );
+    }
 
-EmailForm.defaultProps = {
-  className: '',
-};
-
-EmailForm.propTypes = {
-  className: PropTypes.string,
 };
 
 export default EmailForm;
