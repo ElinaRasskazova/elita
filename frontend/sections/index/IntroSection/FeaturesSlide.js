@@ -17,6 +17,9 @@ const FeaturesSlide = ({item}) => {
                 <Link className={style.title} href={routes.new} as={`${routes.news}/${item.id}`}>
                     {item.Title}
                 </Link>
+                <Typography className={style.description} variant="paragraph">
+                    {item.Text}
+                </Typography>
             </div>
         </div>
     );
