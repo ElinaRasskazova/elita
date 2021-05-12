@@ -94,7 +94,7 @@
     "stylelint-prettier": "^1.1.1",
     "stylelint-scss": "^3.13.0",
     "susy": "^3.0.5",
-    "swiper": "^5.4.1",
+    "swiper": "^6.5.1",
     "templateman": "0.0.5",
     "winston": "^3.2.1"
   }
